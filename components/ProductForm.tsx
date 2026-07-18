@@ -13,6 +13,12 @@ interface Product {
   sort_order: number;
 }
 
+function getImageUrl(key: string): string {
+  if (!key) return "";
+  if (key.startsWith("/api/images/")) return key;
+  return `/api/images/${key}`;
+}
+
 function formatPriceInput(value: string): string {
   const numbers = value.replace(/\D/g, "");
   if (!numbers) return "";
@@ -273,7 +279,7 @@ export default function ProductForm({
           ) : form.image_url ? (
             <div className="space-y-3">
               <img
-                src={form.image_url}
+                src={getImageUrl(form.image_url)}
                 alt="Preview"
                 className="mx-auto h-32 w-32 object-cover rounded-lg"
               />

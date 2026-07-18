@@ -16,6 +16,11 @@ interface Product {
   updated_at: string | null;
 }
 
+function getImageUrl(key: string): string {
+  if (key.startsWith("/api/images/")) return key;
+  return `/api/images/${key}`;
+}
+
 function formatPrice(price: number): string {
   return new Intl.NumberFormat("es-CO", {
     style: "currency",
@@ -193,7 +198,7 @@ export default function AdminPage() {
                 <div className="w-16 h-16 flex-shrink-0 rounded-xl overflow-hidden bg-[#F4F2EA]">
                   {product.image_url ? (
                     <img
-                      src={product.image_url}
+                      src={getImageUrl(product.image_url)}
                       alt={product.name}
                       className="w-full h-full object-cover"
                     />
