@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F4F2EA;
+  --foreground: #182849;
+  --accent-primary: #3A5FA8;
+  --accent-secondary: #8FAAD6;
+  --text-secondary: #5B6472;
+  --surface-card: #FFFEFA;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-text-secondary: var(--text-secondary);
+  --color-surface-card: var(--surface-card);
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-work-sans);
+  --font-mono: var(--font-ibm-plex-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), sans-serif;
+}
+
+.product-card {
+  filter: blur(2px);
+  transition: filter 0.3s ease;
+}
+
+.product-card:hover {
+  filter: blur(0);
+}
+
+.product-card:focus-within {
+  filter: blur(0);
+}

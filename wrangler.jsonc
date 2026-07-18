@@ -1,0 +1,37 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"main": ".open-next/worker.js",
+	"name": "global-vision",
+	"compatibility_date": "2024-12-30",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	"services": [
+		{
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "global-vision"
+		}
+	],
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "global-vision-db",
+			"database_id": "8f067cb1-26df-4c80-94e5-901a767c787e"
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "IMAGES_BUCKET",
+			"bucket_name": "global-vision-images"
+		}
+	],
+	"vars": {
+		"WHATSAPP_NUMBER": "57XXXXXXXXXX",
+		"BUSINESS_NAME": "Global Vision",
+		"PUBLIC_R2_URL": "https://pub-880ad7b13f9d42539f7b05ebb89ad8f0.r2.dev"
+	}
+}
