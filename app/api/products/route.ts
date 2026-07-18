@@ -5,7 +5,7 @@ export async function GET() {
   try {
     const db = getDB();
     const result = await db.prepare(
-      "SELECT * FROM products WHERE available = 1 ORDER BY sort_order ASC"
+      "SELECT * FROM products ORDER BY sort_order ASC"
     );
     const products = await result.all();
     return NextResponse.json(products);
