@@ -89,8 +89,8 @@ export default function ProductForm({
 
       if (!res.ok) throw new Error("Error al subir imagen");
 
-      const data: { url?: string } = await res.json();
-      setForm((prev) => ({ ...prev, image_url: data.url || "" }));
+      const data: { key?: string } = await res.json();
+      setForm((prev) => ({ ...prev, image_url: data.key || "" }));
       setMessage({ type: "success", text: "Imagen subida correctamente" });
     } catch {
       setMessage({ type: "error", text: "Error al subir la imagen" });

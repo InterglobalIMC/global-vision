@@ -6,6 +6,9 @@
 	"compatibility_flags": [
 		"nodejs_compat"
 	],
+	"routes": [
+		{ "pattern": "global-vision.interglobal-imc.com.co/*", "zone_name": "interglobal-imc.com.co" }
+	],
 	"assets": {
 		"directory": ".open-next/assets",
 		"binding": "ASSETS"
