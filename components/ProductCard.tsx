@@ -35,7 +35,7 @@ export default function ProductCard({
   baseUrl: string;
 }) {
   return (
-    <div className={`bg-[#FFFEFA] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 ${!product.available ? "opacity-60" : ""}`}>
+    <div className={`bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 ${!product.available ? "opacity-60" : ""}`}>
       <Link href={`/products/${product.id}`} className="block">
         <div className="aspect-square overflow-hidden bg-gray-100">
           {product.image_url ? (
