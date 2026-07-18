@@ -21,15 +21,9 @@ function buildWhatsAppUrl(product: Product, whatsappNumber: string): string {
     ? `${window.location.origin}/products/${product.id}`
     : "";
 
-  const lines = [
-    `Hola, me interesa la montura "${product.name}" a ${formatPrice(product.price)}`,
-  ];
-
-  if (productUrl) {
-    lines.push(`\nVer producto: ${productUrl}`);
-  }
-
-  const message = encodeURIComponent(lines.join(""));
+  const message = encodeURIComponent(
+    `Hola, me interesa la montura ${productUrl}`
+  );
   return `https://wa.me/${whatsappNumber}?text=${message}`;
 }
 

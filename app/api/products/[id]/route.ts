@@ -85,7 +85,8 @@ export async function PUT(
         available !== undefined ? (available ? 1 : 0) : existing.available,
         sort_order !== undefined ? sort_order : existing.sort_order,
         id
-      );
+      )
+      .run();
 
     const updated = await db
       .prepare("SELECT * FROM products WHERE id = ?")
@@ -122,7 +123,7 @@ export async function DELETE(
       );
     }
 
-    await db.prepare("DELETE FROM products WHERE id = ?").bind(id);
+    await db.prepare("DELETE FROM products WHERE id = ?").bind(id).run();
 
     return NextResponse.json({ success: true });
   } catch (error) {

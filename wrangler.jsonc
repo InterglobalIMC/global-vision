@@ -33,7 +33,6 @@
 		}
 	],
 	"vars": {
-		"WHATSAPP_NUMBER": "57XXXXXXXXXX",
 		"BUSINESS_NAME": "Global Vision",
 		"PUBLIC_R2_URL": "https://pub-880ad7b13f9d42539f7b05ebb89ad8f0.r2.dev"
 	}
