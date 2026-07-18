@@ -1,6 +1,8 @@
-"use client";
+'use client';
 
-import WhatsAppButton from "./WhatsAppButton";
+import WhatsAppButton from './WhatsAppButton';
+import Link from 'next/link';
+import Image from 'next/image';
 
 interface Product {
   id: number;
@@ -15,27 +17,35 @@ interface Product {
 }
 
 function formatPrice(price: number): string {
-  return new Intl.NumberFormat("es-CO", {
-    style: "currency",
-    currency: "COP",
+  return new Intl.NumberFormat('es-CO', {
+    style: 'currency',
+    currency: 'COP',
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(price);
 }
 
-export default function ProductCard({ product }: { product: Product }) {
+export default function ProductCard({
+  product,
+  whatsappNumber,
+  baseUrl,
+}: {
+  product: Product;
+  whatsappNumber: string;
+  baseUrl: string;
+}) {
   return (
     <div className="bg-[#FFFEFA] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-      <a href={`/products/${product.id}`} className="block">
+      <Link href={`/products/${product.id}`} className="block">
         <div className="aspect-square overflow-hidden bg-gray-100">
           {product.image_url ? (
-            <img
+            <Image
               src={product.image_url}
               alt={`Montura ${product.name}`}
               width={400}
               height={400}
-              className="product-card w-full h-full object-cover"
-              loading="lazy"
+              className="w-full h-full object-cover"
+              unoptimized
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-[#F4F2EA] text-[#5B6472]">
@@ -71,10 +81,14 @@ export default function ProductCard({ product }: { product: Product }) {
             </p>
           )}
         </div>
-      </a>
+      </Link>
 
       <div className="px-4 pb-4">
-        <WhatsAppButton product={product} />
+        <WhatsAppButton
+          product={product}
+          whatsappNumber={whatsappNumber}
+          baseUrl={baseUrl}
+        />
       </div>
     </div>
   );

@@ -1,6 +1,10 @@
 import ProductCard from "@/components/ProductCard";
 import { getDB } from "@/lib/db";
 import { getImageUrl } from "@/lib/r2";
+import { getEnv } from "@/lib/config";
+import { headers } from "next/headers";
+
+export const dynamic = "force-dynamic";
 
 interface Product {
   id: number;
@@ -32,6 +36,11 @@ async function getProducts(): Promise<Product[]> {
 
 export default async function Home() {
   const products = await getProducts();
+  const { WHATSAPP_NUMBER } = getEnv();
+  const h = await headers();
+  const host = h.get("host") ?? "global-vision.interglobal-imc.com.co";
+  const protocol = h.get("x-forwarded-proto") ?? "https";
+  const baseUrl = `${protocol}://${host}`;
 
   return (
     <div className="min-h-screen bg-[#F4F2EA]">
@@ -70,7 +79,7 @@ export default async function Home() {
               tendrás opciones increíbles para elegir.
             </p>
             <a
-              href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20más%20información%20sobre%20sus%20monturas"
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola,%20quiero%20más%20información%20sobre%20sus%20monturas`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 mt-8 bg-[#3A5FA8] hover:bg-[#182849] text-white font-medium py-3 px-6 rounded-xl transition-colors duration-200"
@@ -84,7 +93,7 @@ export default async function Home() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard key={product.id} product={product} whatsappNumber={WHATSAPP_NUMBER} baseUrl={baseUrl} />
             ))}
           </div>
         )}

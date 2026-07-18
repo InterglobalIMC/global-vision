@@ -16,10 +16,8 @@ function formatPrice(price: number): string {
   }).format(price);
 }
 
-function buildWhatsAppUrl(product: Product, whatsappNumber: string): string {
-  const productUrl = typeof window !== "undefined"
-    ? `${window.location.origin}/products/${product.id}`
-    : "";
+function buildWhatsAppUrl(product: Product, whatsappNumber: string, baseUrl: string): string {
+  const productUrl = `${baseUrl}/products/${product.id}`;
 
   const message = encodeURIComponent(
     `Hola, me interesa la montura ${productUrl}`
@@ -29,14 +27,16 @@ function buildWhatsAppUrl(product: Product, whatsappNumber: string): string {
 
 export default function WhatsAppButton({
   product,
-  whatsappNumber = "57XXXXXXXXXX",
+  whatsappNumber,
+  baseUrl = "",
   className = "",
 }: {
   product: Product;
-  whatsappNumber?: string;
+  whatsappNumber: string;
+  baseUrl?: string;
   className?: string;
 }) {
-  const href = buildWhatsAppUrl(product, whatsappNumber);
+  const href = buildWhatsAppUrl(product, whatsappNumber, baseUrl);
 
   return (
     <a

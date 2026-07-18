@@ -1,6 +1,12 @@
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { getDB } from "@/lib/db";
 import { getImageUrl } from "@/lib/r2";
+import { getEnv } from "@/lib/config";
+import { headers } from "next/headers";
+import Link from "next/link";
+import Image from "next/image";
+
+export const dynamic = "force-dynamic";
 
 interface Product {
   id: number;
@@ -63,6 +69,11 @@ export default async function ProductPage({
 }) {
   const { id } = await params;
   const product = await getProduct(id);
+  const { WHATSAPP_NUMBER } = getEnv();
+  const h = await headers();
+  const host = h.get("host") ?? "global-vision.interglobal-imc.com.co";
+  const protocol = h.get("x-forwarded-proto") ?? "https";
+  const baseUrl = `${protocol}://${host}`;
 
   if (!product) {
     return (
@@ -71,9 +82,9 @@ export default async function ProductPage({
           <h1 className="font-[family-name:var(--font-display)] text-xl font-semibold text-[#182849] mb-2">
             Montura no encontrada
           </h1>
-          <a href="/" className="text-[#3A5FA8] hover:underline">
+          <Link href="/" className="text-[#3A5FA8] hover:underline">
             Volver al catálogo
-          </a>
+          </Link>
         </div>
       </div>
     );
@@ -82,7 +93,7 @@ export default async function ProductPage({
   return (
     <div className="min-h-screen bg-[#F4F2EA]">
       <header className="py-4 px-4">
-        <a
+        <Link
           href="/"
           className="inline-flex items-center gap-1 text-sm text-[#5B6472] hover:text-[#3A5FA8] transition-colors"
         >
@@ -90,19 +101,20 @@ export default async function ProductPage({
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
           Volver al catálogo
-        </a>
+        </Link>
       </header>
 
       <main className="max-w-lg mx-auto px-4 pb-16">
         <div className="bg-[#FFFEFA] rounded-2xl overflow-hidden shadow-sm">
           {product.image_url && (
             <div className="aspect-square overflow-hidden bg-gray-100">
-              <img
+              <Image
                 src={product.image_url}
                 alt={`Montura ${product.name}`}
                 width={800}
                 height={800}
                 className="w-full h-full object-cover"
+                unoptimized
               />
             </div>
           )}
@@ -128,7 +140,7 @@ export default async function ProductPage({
             )}
 
             <div className="mt-6">
-              <WhatsAppButton product={product} />
+              <WhatsAppButton product={product} whatsappNumber={WHATSAPP_NUMBER} baseUrl={baseUrl} />
             </div>
           </div>
         </div>

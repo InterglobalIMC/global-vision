@@ -27,15 +27,3 @@ body {
   font-family: var(--font-body), sans-serif;
 }
 
-.product-card {
-  filter: blur(2px);
-  transition: filter 0.3s ease;
-}
-
-.product-card:hover {
-  filter: blur(0);
-}
-
-.product-card:focus-within {
-  filter: blur(0);
-}

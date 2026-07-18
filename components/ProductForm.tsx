@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 interface Product {
   id?: number;
@@ -296,10 +297,13 @@ export default function ProductForm({
             </div>
           ) : form.image_url ? (
             <div className="space-y-3">
-              <img
+              <Image
                 src={getImageUrl(form.image_url)}
                 alt="Preview"
                 className="mx-auto h-32 w-32 object-cover rounded-lg"
+                width={128}
+                height={128}
+                unoptimized
               />
               <p className="text-sm text-[#5B6472]">
                 Click o arrastra para cambiar

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 interface Product {
@@ -197,10 +198,13 @@ export default function AdminPage() {
               >
                 <div className="w-16 h-16 flex-shrink-0 rounded-xl overflow-hidden bg-[#F4F2EA]">
                   {product.image_url ? (
-                    <img
+                    <Image
                       src={getImageUrl(product.image_url)}
                       alt={product.name}
                       className="w-full h-full object-cover"
+                      width={64}
+                      height={64}
+                      unoptimized
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
