@@ -22,7 +22,7 @@ async function getProducts(): Promise<Product[]> {
   try {
     const db = getDB();
     const { results } = await db
-      .prepare("SELECT * FROM products WHERE available = 1 ORDER BY sort_order ASC, created_at DESC")
+      .prepare("SELECT * FROM products ORDER BY sort_order ASC, created_at DESC")
       .all<Product>();
 
     return results.map((p) => ({

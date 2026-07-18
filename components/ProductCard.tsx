@@ -35,7 +35,7 @@ export default function ProductCard({
   baseUrl: string;
 }) {
   return (
-    <div className="bg-[#FFFEFA] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+    <div className={`bg-[#FFFEFA] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 ${!product.available ? "opacity-60" : ""}`}>
       <Link href={`/products/${product.id}`} className="block">
         <div className="aspect-square overflow-hidden bg-gray-100">
           {product.image_url ? (
@@ -84,11 +84,17 @@ export default function ProductCard({
       </Link>
 
       <div className="px-4 pb-4">
-        <WhatsAppButton
-          product={product}
-          whatsappNumber={whatsappNumber}
-          baseUrl={baseUrl}
-        />
+        {product.available ? (
+          <WhatsAppButton
+            product={product}
+            whatsappNumber={whatsappNumber}
+            baseUrl={baseUrl}
+          />
+        ) : (
+          <div className="text-center text-sm text-[#5B6472] py-3">
+            No disponible
+          </div>
+        )}
       </div>
     </div>
   );
