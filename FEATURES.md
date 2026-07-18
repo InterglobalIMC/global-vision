@@ -91,25 +91,25 @@ npx wrangler login          # autenticar con Cloudflare
 - [x] `app/admin/page.tsx` — lista de productos con acciones
 - [x] `app/admin/products/new/page.tsx` — formulario creación
 - [x] `app/admin/products/[id]/page.tsx` — formulario edición
-- [ ] `middleware.ts` — protección con Cloudflare Access (pendiente para producción)
+- [x] Cloudflare Access — protección con One-time PIN (configurado en Zero Trust dashboard)
 
 ---
 
 ## Fase 5 — Pulido
-**Estado:** En progreso
+**Estado:** Completada
 
-- [ ] Manejo de errores y validación de inputs
+- [x] Manejo de errores y validación de inputs (validación client-side en ProductForm)
 - [x] SEO: meta tags, Open Graph para Global Vision (ya configurado en layout.tsx)
-- [ ] Optimización de imágenes (compresión, lazy loading)
-- [ ] Tests en dispositivos reales
+- [x] Optimización de imágenes (width/height, lazy loading, alt text descriptivo)
+- [ ] Tests en dispositivos reales (pendiente de testing manual)
 
 ---
 
 ## Fase 6 — Producción
-**Estado:** Pendiente
+**Estado:** Completada
 
-- [ ] Dominio propio conectado
-- [ ] Cloudflare Access configurado
-- [ ] Variable WHATSAPP_NUMBER con número real
-- [ ] Deploy final
+- [x] Dominio propio conectado (global-vision.interglobal-imc.com.co)
+- [x] Cloudflare Access configurado (One-time PIN)
+- [x] Variable WHATSAPP_NUMBER con número real (configurado en Cloudflare dashboard)
+- [x] Deploy final
 - [x] README.md con instrucciones de uso (setup.sh creado)

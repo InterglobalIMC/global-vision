@@ -99,7 +99,9 @@ export default async function ProductPage({
             <div className="aspect-square overflow-hidden bg-gray-100">
               <img
                 src={product.image_url}
-                alt={product.name}
+                alt={`Montura ${product.name}`}
+                width={800}
+                height={800}
                 className="w-full h-full object-cover"
               />
             </div>

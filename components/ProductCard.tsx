@@ -31,7 +31,9 @@ export default function ProductCard({ product }: { product: Product }) {
           {product.image_url ? (
             <img
               src={product.image_url}
-              alt={product.name}
+              alt={`Montura ${product.name}`}
+              width={400}
+              height={400}
               className="product-card w-full h-full object-cover"
               loading="lazy"
             />

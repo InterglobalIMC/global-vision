@@ -126,6 +126,24 @@ export default function ProductForm({
     setIsSubmitting(true);
     setMessage(null);
 
+    if (!form.name.trim()) {
+      setMessage({ type: "error", text: "El nombre es obligatorio" });
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (form.price <= 0) {
+      setMessage({ type: "error", text: "El precio debe ser mayor a 0" });
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (mode === "create" && !form.image_url) {
+      setMessage({ type: "error", text: "Debes subir una imagen" });
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const url =
         mode === "create" ? "/api/products" : `/api/products/${product?.id}`;
